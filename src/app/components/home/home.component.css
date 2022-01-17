@@ -1,0 +1,115 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+   html,body{
+      width:100%;
+      height:100%;
+  }
+  
+  .hero {
+    width: 100%;
+    height:120%;
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    }
+  .hero::before {
+        background-image: url("/assets/images/279547.jpg");
+        background-size: cover;
+        -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  background-position: center;
+        content: "";
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        opacity: 1;
+        }
+       .hero::after {
+           /* background-image: linear-gradient(to bottom right,rgb(28, 107, 28));:rgb(12, 119, 12)rgb(187, 60, 155)rgb(170,31,512)*/
+           background-color:#904c96;
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            }
+            
+  .form-group {
+    width: 500px;
+    height:500px;
+    top:19.5%;
+    left:9%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+  }
+  .container{
+    text-align: center;
+  }
+  
+  .btn {
+    align-items: center;
+  }
+  a:link {
+  color:lightpink;
+  }
+  
+  /* visited link */
+  a:visited {
+  color:white;
+  }
+  
+  /* mouse over link */
+  a:hover {
+  color: rgb(248, 35, 184);
+  }
+  
+  /* selected link */
+  a:active {
+  color: purple;
+  }
+  .box{
+      padding: 12px;
+      display: -webkit-flex;
+      display: -webkit-box;
+       display: -moz-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+    display: flex;
+   /* box-shadow:3px 3px rgb(66, 65, 65), -1em 0 .4em olive;*/
+    box-shadow: 0px 1px 15px 9px rgba(223, 167, 215, 0.993);
+    flex-direction:column;
+      justify-content: center;
+    align-content: center;
+      margin: 8px auto;
+      color:white;
+      font-size:22px;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 500;
+      background-color:rgba(255,255,255,0.08) ;   
+      filter: alpha(opacity=10); 
+      border-radius : 20px;
+      border: 1px;
+      -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  }
+  .list-group-item {
+    background-color: transparent;
+    /*border-bottom: 2px solid whitesmoke;*/
+    border-radius: 0;
+    color: #fff;
+    }

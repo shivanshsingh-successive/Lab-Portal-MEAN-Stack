@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <br><br><br><br><br>
+    <div class="container">
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-primary" (click) = "openPopup()">
+          <i class="fa fa-plus-circle mr-2" aria-hidden="true"></i>New Question
+        </button>
+        <!-- The Modal-->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+            
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Assign Task</h4>
+                <button type="button" class="close" data-dismiss="modal" (click)="close()">&times;</button>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body">
+                <form [formGroup] = "formdata" (ngSubmit)="on_submit()" class="form">
+                  <div class="form-group" [ngClass]="{error:formdata.controls.SubjectCode.errors && formdata.controls.SubjectCode.touched}">
+                    <label for="Inputname">Subject Code <span class="required-asteric">*</span></label>
+                    <div class="input-group controls">
+                      <input formControlName = "SubjectCode" type="text" class="form-control">
+                      <div *ngIf="formdata.controls.SubjectCode.errors && formdata.controls.SubjectCode.touched" style="color:red;float: left;width: 100%;background: #ff000014;margin-top: 10px;padding: 10px 2px 0px 1px;">
+                          <p>SubjectCode is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group" [ngClass]="{error:formdata.controls.LabNo.errors && formdata.controls.LabNo.touched}">
+                    <label for="Inputname">Lab No.<span class="required-asteric">*</span></label>
+                    <div class="input-group controls">
+                      <input formControlName = "LabNo" type="text" pattern="[0-9]*" class="form-control">
+                      <div *ngIf="formdata.controls.LabNo.errors && formdata.controls.LabNo.touched" style="color:red;float: left;width: 100%;background: #ff000014;margin-top: 10px;padding: 10px 2px 0px 1px;">
+                        <p>Lab Number is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group" [ngClass]="{error:formdata.controls.Question.errors && formdata.controls.Question.touched}">
+                    <label for="Inputname">Description<span class="required-asteric">*</span></label>
+                    <div class="input-group controls">
+                      <textarea rows="4" cols="45" formControlName = "Question" type="text" class="form-control"></textarea>
+                      <div *ngIf="formdata.controls.Question.errors && formdata.controls.Question.touched" style="color:red;float: left;width: 100%;background: #ff000014;margin-top: 10px;padding: 10px 2px 0px 1px;">
+                          <p>Question is required.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" [disabled]="formdata.invalid" class="btn btn-primary"><i class="fa fa-share-square-o mr-2" aria-hidden="true"></i>Submit</button>
+                </form>
+              </div>
+              
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="close()"><i class="fa fa-times-circle-o mr-2" aria-hidden="true"></i>Close</button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="list-group" *ngFor="let element of this.currentSubject.experiments;let i=index">
+          <ul>
+            <li>
+              <a [routerLink] ="['./results',this.currentSubject.code,this.currentSubject.experiments[i].labno ]">
+                Lab {{ this.currentSubject.experiments[i].labno }}
+              </a>
+            </li>
+          </ul> 
+        </div>
+    </div>  
+  </body>
+</html>

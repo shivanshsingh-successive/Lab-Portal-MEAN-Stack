@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <br><br><br>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+  <table class="table table-hover ">
+    <thead>
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Username</th>
+        <th scope="col">File</th>
+        <th scope="col">Review</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of result;let i = index">
+        <th scope="row">{{ i+1 }}</th>
+        <td>{{ this.result[i].info.firstname }}</td>
+        <td>{{ this.result[i].info.username }}</td>
+        <td>{{ this.result[i].file.file }}</td>
+        <td>
+          <button type="button" class="btn btn-primary mr-3" (click)="view(this.result[i].file.file)"><i class="fa fa-eye mr-2" aria-hidden="true"></i>View</button>
+          <button type="button" class="btn btn-success" (click)="download(this.result[i].file.file)"><i class="fa fa-download mr-2" aria-hidden="true"></i>Download</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+</div>
+  </body>
+</html>

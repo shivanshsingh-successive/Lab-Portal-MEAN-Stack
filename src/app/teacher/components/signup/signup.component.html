@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <title>Register</title>
+      <style type="text/css">
+        section{
+              padding : 0 100px;
+              background-image: url("assets/images/32596.jpg");
+              height: 100vh;
+              display:flex;
+              justify-content: center;
+              align-items:center;
+        }
+        .box{
+          width: 500px;
+          top:50%;
+          left:50%;
+          transform: translate(-50%,-50%);
+            padding: 40px;
+            display: -webkit-flex;
+            display: -webkit-box;
+             display: -moz-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+          display: flex;
+          box-shadow:3px 3px rgb(66, 65, 65), -1em 0 .4em olive;
+          box-shadow: 0px 1px 15px 5px rgba(140, 240, 120, 0.993);
+          flex-direction:column;
+            justify-content: center;
+          align-content: center;
+            margin: 50px auto;
+            position: absolute;
+            background-color:rgba(255,255,255,0.08) ;   
+            filter: alpha(opacity=10); 
+            border-radius : 20px;
+            border: 1px solid black;
+            -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+        }
+
+        .form-container {
+          color:white;
+           position: relative;
+          opacity: 1;
+          margin: 0;
+          padding:0;
+      
+
+        }
+        .form-conatiner h2{
+              font-size: 30px;
+              padding :0;
+              font-weight : bold;
+        }
+        .credits {
+            border-top: 1px solid #ddd;
+            margin-top: 40px;
+            padding-top: 20px;
+        }
+    </style>
+  </head>
+  <body>
+    <section>
+        <div class = "box">
+    <div class="form-container">
+        <h2>Register</h2>
+        <form  name = "profileForm" [formGroup]="profileForm" (ngSubmit)="onSubmit()" method="post" action="sign-up">
+            <div class = "box-shadow">
+            <div class="form-group" [ngClass]="{
+              'has-danger': profileForm.controls.firstname.invalid && (profileForm.controls.firstname.dirty||profileForm.controls.firstname.touched),
+              'has-success': profileForm.controls.firstname.valid && (profileForm.controls.firstname.dirty||profileForm.controls.firstname.touched)
+           }" >
+               
+                <label for="firstName">Name</label>
+                <input  type="text" name="first" formControlName="firstname" class="form-control ng-untouched ng-invalid ng-pristine"  required />
+                <div class="form-control-feedback"
+                *ngIf="profileForm.controls.firstname.errors && (profileForm.controls.firstname.dirty || profileForm.controls.firstname.touched)">
+             <p *ngIf="profileForm.controls.firstname.errors.required">Name is required</p>
+           </div>
+              </div>
+            <div class="form-group"  [ngClass]="{
+              'has-danger': profileForm.controls.code.invalid && (profileForm.controls.code.dirty||profileForm.controls.code.touched),
+              'has-success': profileForm.controls.code.valid && (profileForm.controls.code.dirty||profileForm.controls.code.touched)
+           }" >
+                <label for="username">Subject Code</label>
+                <input  type="text" name="username1" formControlName="code" class="form-control ng-untouched ng-invalid ng-pristine" required />
+                <div class="form-control-feedback"
+                *ngIf="profileForm.controls.code.errors && (profileForm.controls.code.dirty || profileForm.controls.code.touched)">
+             <p *ngIf="profileForm.controls.code.errors.required">Subject Code is required</p>
+           </div>
+              </div>
+            <div class="form-group" [ngClass]="{
+              'has-danger': profileForm.controls.password.invalid && (profileForm.controls.password.dirty||profileForm.controls.password.touched),
+              'has-success': profileForm.controls.password.valid && (profileForm.controls.password.dirty||profileForm.controls.password.touched)
+           }">
+                <label for="password">Password</label>
+                <input  type="password" name="password1" id="password" formControlName="password" class="form-control ng-untouched ng-invalid ng-pristine" required />
+            <div class="form-control-feedback" *ngIf="profileForm.controls.password.errors && (profileForm.controls.password.dirty || profileForm.controls.password.touched)">
+                    <p *ngIf="profileForm.controls.password.errors.required">Password is required</p>
+                    <p *ngIf="profileForm.controls.password.errors.minlength">Password must be 8 characters long, we need another {{profileForm.controls.password.errors.minlength.requiredLength - profileForm.controls.password.errors.minlength.actualLength}} characters</p>
+                  </div>
+        </div></div>
+            <div class="form-group">
+                <button id="submitbutton" type="submit" [disabled]="profileForm.invalid" class="btn btn-primary btn-round mr-3">Register</button>
+                <a routerLink='/' class="btn btn-link btn-info">Cancel</a>  
+            </div>
+        </form>
+    </div>
+        </div></section>
+  </body>
+</html>

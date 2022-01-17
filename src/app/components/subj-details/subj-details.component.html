@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+<br>
+<br>
+<br>
+<div class="list-group" *ngFor="let element of this.currentSubject.experiments;let i=index">
+  <ul>
+    <li><a [routerLink]="['./lab',this.currentSubject.code,this.currentSubject.experiments[i].labno ]" >Lab {{ this.currentSubject.experiments[i].labno }}</a></li>
+  </ul>
+</div>
+</body>
+</html>
+

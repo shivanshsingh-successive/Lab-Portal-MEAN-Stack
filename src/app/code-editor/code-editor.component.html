@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+<br><br><br>
+  <div>
+      <!-- Jumbotron -->
+<div class="jumbotron text-center" *ngFor="let e of this.currentLab.experiments;let i=index" >
+
+    <!-- Title -->
+    <h4 class="card-title h4 pb-2"><strong>Lab No. {{ this.currentLab.experiments[i].labno }}</strong></h4>
+  
+    <h5 class="indigo-text h5 mb-4">{{ this.currentLab.experiments[i].question }}.</h5>
+
+  <input type="file" name="file" ng2FileSelect [uploader]="uploader" accept="image/x-png,image/jpeg,application/pdf" (change)="selectImage($event)"/>
+  <button type="button" class="mx-auto  btn btn-success" (click)="onSubmit()" [disabled]="!uploader.getNotUploadedItems().length">
+    <i class="fa fa-upload mr-2" aria-hidden="true"></i> Upload Solution
+  </button>
+  </div>
+</div>
+
+<div class="container h-100 mt-4">
+
+    <div class="row mb-4 justify-content-center mx-4">
+
+        <div class="col-auto col-lg-3 col-md-4 col-sm-6">
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="languages-select">Languages</label>
+                </div>
+                <select class="languages-select" id="languages-select" (change)="selectLanguage($event.target.value)" >
+                    <option value="1">C (gcc 5.3)</option>
+                    <option value="2">C++ (g++ 5.3)</option>
+                    <option value="3">Java (1.8)</option>
+                    <option value="4">Python 3</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-auto col-lg-3 col-md-4 col-sm-6">
+            <div class="btn-group btn-group-toggle btn-group-sm mx-auto" data-toggle="buttons" (click)="themes($event.target.value)">
+                <label class="btn btn-secondary active" for="1">
+                    <input type="radio" name="options" id="1" autocomplete="off" value="1" checked>
+                    Theme Light
+                </label>
+                <label class="btn btn-secondary" for="2">
+                    <input type="radio" name="options" id="2" value="2" autocomplete="off">
+                    Dark
+                </label>
+                <label class="btn btn-secondary" for="3">
+                    <input type="radio" name="options" id="3" value="3" autocomplete="off">
+                    Monokai
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+         <div class="col">
+            <div class="code-editor" >
+              <ace-editor #editor style="height:150px;"></ace-editor>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4 justify-content-center mx-4">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default">Input Parameters</span>
+            </div>
+            <textarea class="form-control output" rows="2" [(ngModel)]="input" aria-label="output-textarea"></textarea>
+        </div>
+        <div class="col-4 col-lg-2 col-md-3 col-sm-4 w-75">
+            <button type="button" class="btn btn-primary" (click)="consoleCode()">
+                <i class="fa fa-code mr-2" aria-hidden="true"></i>Run
+            </button>
+        </div>
+        <div class="col-4 col-lg-2 col-md-3 col-sm-4 w-75">
+            <button type="button" class="btn btn-danger" (click)="clearCode()">
+                <i class="fa fa-trash-o mr-2" aria-hidden="true"></i>Clear
+            </button>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col">
+            <div class="label-box border"><span class="mx-4 font-weight-light">Output</span></div>
+            <textarea class="form-control output " rows="5" disabled="true" aria-label="output-textarea">{{ this.output }}</textarea>
+        </div>
+
+    </div>
+
+    <ng-container
+    *ngIf="this.output != 'Compilation result....'; then loggedIn; else loggedOut">
+    </ng-container>
+
+    <ng-template #loggedIn>
+        <button type="button" class="btn btn-success m-3 btn-sm" (click)="downloadCode()">
+            <i class="fa fa-download mr-2" aria-hidden="true"></i> Download Code
+        </button>
+    </ng-template>
+    <ng-template #loggedOut>
+        <button type="button" class="button disabled btn btn-success m-3 btn-sm">
+            <i class="fa fa-download mr-2" aria-hidden="true"></i> Download Code
+        </button>
+    </ng-template>
+
+</div>
+</body>

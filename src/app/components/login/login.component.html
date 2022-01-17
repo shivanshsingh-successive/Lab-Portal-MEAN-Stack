@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <title>Login</title>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" /> 
+      <link href="//fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Login</h1>
+      <div class="w3ls-login box">
+    <img  style="padding-left: 20em;margin:0em ;padding-right:-5em" src="assets/images/logo.png" alt="logo_img" />
+    <div class="form-container">
+        <form [formGroup]="loginForm" (ngSubmit)="onlogin()" method="post" action="log-in" >
+            <div id="inputs">
+            <div class="form-group"  [ngClass]="{
+                'has-danger': loginForm.controls.username.invalid && (loginForm.controls.username.dirty||loginForm.controls.username.touched),
+                'has-success': loginForm.controls.username.valid && (loginForm.controls.username.dirty||loginForm.controls.username.touched) 
+            }">
+                
+                    <div class="agile_label">
+                <label for="username" class = "title">University Roll No.</label></div>
+                <input type="text" pattern="[0-9]*" name="username" formControlName="username" class="form-control"  (focus)="focus==true" (blur)="focus==false" />
+            
+            <div style= "padding:10px;padding-bottom:0px;text-align:center;font-weight: bold;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"
+            *ngIf="loginForm.controls.username.errors && (loginForm.controls.username.dirty || loginForm.controls.username.touched)">
+         <p *ngIf="loginForm.controls.username.errors.required">Roll Number is required</p>
+         <p *ngIf="loginForm.controls.username.errors.minlength">Roll No. is 10 characters long</p>
+       </div></div>
+            <div class="form-group" [ngClass]="{
+                'has-danger': loginForm.controls.password.invalid && (loginForm.controls.password.dirty||loginForm.controls.password.touched),
+                'has-success': loginForm.controls.password.valid && (loginForm.controls.password.dirty||loginForm.controls.password.touched) 
+            }">  
+                <div class="agile_label">
+                <label for="password" class = "title">Password</label></div>
+                <input type="password" name="password" formControlName="password" class="form-control form-control-success" (focus)="focus==true" (blur)="focus==false" />
+            
+            <div style= "padding:10px;padding-bottom:0px;text-align:center;font-weight: bold;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" *ngIf="loginForm.controls.password.errors && (loginForm.controls.password.dirty || loginForm.controls.password.touched)">
+                <p *ngIf="loginForm.controls.password.errors.required">Password is required</p>
+                <p *ngIf="loginForm.controls.password.errors.minlength">Password must be 5 characters long, we need another {{loginForm.controls.password.errors.minlength.requiredLength - loginForm.controls.password.errors.minlength.actualLength}} characters</p>
+              </div>   
+        </div>
+            <div class="form-group" >
+                <div class="w3ls-bot" >
+                <input id = "submitbutton" type="submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-round" value="LOGIN">
+                </div>
+            <div class= "hellobab" >
+                <a routerLink="/sign-up" class="btn btn-link" >Register as Student</a><br>
+                 <a routerLink="/" class="btn btn-link " >Cancel</a>
+            </div>
+        </div>
+            </div>
+        </form>
+    </div>
+      </div>
+  </body>
+</html>
