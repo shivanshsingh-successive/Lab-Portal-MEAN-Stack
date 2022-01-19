@@ -1,5 +1,5 @@
 const bodyParser = require('body-parser');
-
+const mongoose = require('./database/mongoose');
 const StudentRoutes = require('./routes/auth.routes');
 const TeacherRoutes = require('./routes/teacher.routes');
 const FileRoutes = require('./routes/file.routes');
